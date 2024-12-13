@@ -1,0 +1,20 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: jdbc
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://np.eeerrorcode.com:3306/post
+    username: sample
+    password: 1234
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+  type-aliases-package: com.eeerrorcode.member_post.vo
+  configuration:
+    map-underscore-to-camel-case: true

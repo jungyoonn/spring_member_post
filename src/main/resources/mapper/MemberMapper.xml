@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eeerrorcode.member_post.mapper.MemberMapper">
+  <select id="selectList" resultType="member">
+  	select * from tbl_member
+  </select>
+  <select id="selectOne" resultType="member">
+    select * from tbl_member where id = #{id}
+  </select>
+  <insert id="insert">
+  	INSERT INTO tbl_member(id, pw, name, email, road_addr, detail_addr) 
+  	VALUES (#{id}, #{pw}, #{name}, #{email}, #{roadAddr}, #{detailAddr})
+  </insert>
+  <delete id="delete">
+  	delete from tbl_member where id = #{id}
+  </delete>
+</mapper>
