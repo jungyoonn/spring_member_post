@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,10 +26,13 @@
                     <input type="text" class="form-control my-2" id="id" placeholder="아이디" name="id" value="${cookie['remember-id'].value }">
                     <input type="password" class="form-control my-2" id="pw" placeholder="비밀번호" name="pw">
                     <div class="form-check form-switch my-3">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="remember-id" value="yes" ${empty cookie['remember-id'] ? '' : 'checked' }>
+                        <input class="form-check-input" type="checkbox" id="mySwitch" name="remember-id" value="${cookie['remember-id']}" ${empty cookie['remember-id'] ? '' : 'checked' }>
                         <label class="form-check-label" for="mySwitch">로그인 정보 저장하기</label>
                     </div>
                     <button class="btn btn-dark">로그인</button>
+                    <c:if test="${not empty msg}">
+                        <p class="mt-3 text-danger text-center small">로그인 실패 - 아이디와 비밀번호를 확인하세요</p>
+                    </c:if>
                 </form>
             </main>
             <jsp:include page="../common/footer.jsp" />
