@@ -2,11 +2,13 @@ package com.eeerrorcode.member_post.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.eeerrorcode.member_post.dto.ReplyCri;
 import com.eeerrorcode.member_post.vo.Reply;
 
+@Mapper
 public interface ReplyMapper {
 	int insert (Reply reply);
 	int update (Reply reply);
