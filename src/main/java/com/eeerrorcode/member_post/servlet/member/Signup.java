@@ -1,16 +1,7 @@
 package com.eeerrorcode.member_post.servlet.member;
 
-import java.io.IOException;
-
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-import com.eeerrorcode.member_post.service.MemberService;
-import com.eeerrorcode.member_post.service.MemberServiceImpl;
-import com.eeerrorcode.member_post.vo.Member;
 
 @WebServlet("/signup")
 public class Signup extends HttpServlet{
