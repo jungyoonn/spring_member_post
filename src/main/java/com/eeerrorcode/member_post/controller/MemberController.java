@@ -42,6 +42,7 @@ public class MemberController {
     ) {
     log.info("아이디 기억? " + remember);
     log.info("멤버? " + member);
+    log.info(member);
 
     if(service.login(member.getId(), member.getPw())) {
       // 로그인 성공
