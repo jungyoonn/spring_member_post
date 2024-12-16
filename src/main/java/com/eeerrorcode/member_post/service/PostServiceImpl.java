@@ -2,84 +2,69 @@ package com.eeerrorcode.member_post.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eeerrorcode.member_post.dto.Criteria;
 import com.eeerrorcode.member_post.mapper.AttachMapper;
 import com.eeerrorcode.member_post.mapper.PostMapper;
-import com.eeerrorcode.member_post.utils.MybatisInit;
+import com.eeerrorcode.member_post.mapper.ReplyMapper;
 import com.eeerrorcode.member_post.vo.Post;
 
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+@Transactional // 수정 작업이 빈번하게 일어날 경우 트랜잭셔널
 public class PostServiceImpl implements PostService {
-	
+	private PostMapper mapper;
+	private AttachMapper attachMapper;
+	private ReplyMapper replyMapper;
+
 	@Override
 	public int write(Post post) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			mapper.insert(post);
+		mapper.insert(post);
 			
-			post.getAttachs().forEach(a -> {
-				a.setPno(post.getPno());
-				attachMapper.insert(a);
-			});
-			return 0;
-		}
+		// post.getAttachs().forEach(a -> {
+		// 	a.setPno(post.getPno());
+		// 	attachMapper.insert(a);
+		// });
+		return 0;
 	}
 
 	@Override
 	public int modify(Post post) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.update(post);
-		}
+		return mapper.update(post);
 	}
 
 	@Override
 	public int remove(Long pno) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			attachMapper.delete(pno);
-			return mapper.delete(pno);
-		}
+		attachMapper.delete(pno);
+		replyMapper.delete(pno);
+		return mapper.delete(pno);
 	}
 
 	@Override
 	public Post findBy(Long pno) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.selectOne(pno);
-		}
+		return mapper.selectOne(pno);
 	}
 
 	@Override
 	public List<Post> list(Criteria cri) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.selectList(cri);
-		}
+		return mapper.selectList(cri);
 	}
 
 	@Override
 	public Post view(Long pno) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			AttachMapper attachMapper = session.getMapper(AttachMapper.class);
-			Post post = mapper.selectOne(pno);
-			post.setAttachs(attachMapper.selectList(pno));
-			mapper.increaseViewCount(pno);
-			return post;
-		}
+		mapper.increaseViewCount(pno);
+		Post post = mapper.selectOne(pno);
+		// post.setAttachs(attachMapper.selectList(pno));
+		return post;
 	}
 
 	@Override
 	public int count(Criteria cri) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			PostMapper mapper = session.getMapper(PostMapper.class);
-			return mapper.getCount(cri);
-		}
+		return mapper.getCount(cri);
 	}
-	
 	
 }
