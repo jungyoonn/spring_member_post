@@ -28,10 +28,11 @@ out/
 
 ### NetBeans ###
 /nbproject/private/
-/nbbuild/
+/nbbuild/s
 /dist/
 /nbdist/
 /.nb-gradle/
 
 ### VS Code ###
 .vscode/
+*.properties
