@@ -20,7 +20,7 @@
                         // keyword : keyword,
                         // keyword, 셋이 다 같은 뜻
                         keyword,
-                        confmKey : 'devU01TX0FVVEgyMDI0MTAyOTEyMTYyMDExNTIwMDM=',
+                        confmKey : 'U01TX0FVVEgyMDI0MTIxNjEyNTEzMjExNTMzMTk=',
                         currentPage : 1,
                         countPerPage : 100,
                         resultType : 'json'
@@ -69,7 +69,7 @@
                 <form name="form" method="post" class="mx-auto col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 col xxl-3 card p-3 my-5">
                     <h4 class="text-center mt-2">회원가입</h4>
                     <input type="text" class="form-control my-2" id="id" placeholder="아이디" name="id">
-                    <input type="password" class="form-control my-2" id="pwd" placeholder="비밀번호" name="pwd">
+                    <input type="password" class="form-control my-2" id="pw" placeholder="비밀번호" name="pw">
                     <input type="text" class="form-control my-2" id="name" placeholder="이름" name="name">
                     <input type="email" class="form-control my-2" id="email" placeholder="이메일" name="email">
                     <input type="text" class="form-control my-2" id="roadAddr" placeholder="주소" name="roadAddr" readonly>

@@ -18,10 +18,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int register(Member member) {
-		try(SqlSession session = MybatisInit.getInstance().sqSessionFactory().openSession(true)) {
-			MemberMapper mapper = session.getMapper(MemberMapper.class);
-			return mapper.insert(member);
-		}
+		return mapper.insert(member);
 	}
 
 	@Override
