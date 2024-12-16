@@ -1,10 +1,10 @@
-logging:
-  config: classpath:log4j2.yml
+# logging:
+#   config: classpath:log4j2.yml
 server:
   port: 9999
 spring:
   application:
-    name: jdbc
+    name: member_post
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     # driver-class-name: org.mariadb.jdbc.Driver
