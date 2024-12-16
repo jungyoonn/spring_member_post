@@ -50,7 +50,7 @@ public class MemberController {
       session.setAttribute("member", service.findBy(member.getId()));
 
       // 1-1. 아이디 저장 시 cookie에 remember-id를 지정
-      Cookie cookie = new Cookie("remember-id", "yes");
+      Cookie cookie = new Cookie("remember-id", member.getId());
       cookie.setPath("/");
       if(remember != null) {
         cookie.setMaxAge(60 * 60 * 24 * 7);
