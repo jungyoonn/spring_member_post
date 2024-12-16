@@ -46,6 +46,12 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
 
+	// https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.2'
+
 }
 
 tasks.named('test') {
