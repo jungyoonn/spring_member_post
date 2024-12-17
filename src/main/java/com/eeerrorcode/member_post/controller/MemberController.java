@@ -4,7 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.eeerrorcode.member_post.service.MemberService;
 import com.eeerrorcode.member_post.vo.Member;
@@ -31,6 +34,31 @@ public class MemberController {
   // void : 접속 requestURI 위치를 반환 foward
 
   private MemberService service;
+  InternalResourceViewResolver resolver;
+
+  @GetMapping("mv")
+  public ModelAndView mv(ModelAndView mav) {
+    mav.addObject("test", "abcd");
+    mav.setViewName("common/index");
+    log.info(mav);
+    return mav;
+  }
+  
+
+  @RequestMapping(value = {"", "*"}, method = RequestMethod.GET) @ResponseBody
+  public Member all() {
+    // DispatcherServlet servlet;
+    log.info(resolver);
+    log.info(resolver.getAttributesMap());
+    log.info(resolver.getOrder());
+    return new Member();
+  }
+  
+  // @RequestMapping(value = {"", "*"}, method = RequestMethod.PUT) @ResponseBody
+  // public Member all2() {
+  //   log.info("에에에");
+  //   return new Member();
+  // }
 
   @RequestMapping(value = "signin", method=RequestMethod.GET)
   public void signin() {  }
