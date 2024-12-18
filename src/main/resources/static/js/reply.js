@@ -2,6 +2,10 @@
 const replyService = (function() {
     const url = "/reply";
 
+    $.ajaxSetup({
+        contentType: 'application/json; charset=utf-8'
+    });
+
     function write(reply, callback) {
         console.log(reply);
         const data = JSON.stringify(reply);
