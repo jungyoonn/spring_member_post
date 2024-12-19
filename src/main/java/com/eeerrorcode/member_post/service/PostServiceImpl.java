@@ -25,10 +25,10 @@ public class PostServiceImpl implements PostService {
 	public int write(Post post) {
 		mapper.insert(post);
 			
-		// post.getAttachs().forEach(a -> {
-		// 	a.setPno(post.getPno());
-		// 	attachMapper.insert(a);
-		// });
+		post.getAttachs().forEach(a -> {
+			a.setPno(post.getPno());
+			attachMapper.insert(a);
+		});
 		return 0;
 	}
 
@@ -58,7 +58,7 @@ public class PostServiceImpl implements PostService {
 	public Post view(Long pno) {
 		mapper.increaseViewCount(pno);
 		Post post = mapper.selectOne(pno);
-		// post.setAttachs(attachMapper.selectList(pno));
+		post.setAttachs(attachMapper.selectList(pno));
 		return post;
 	}
 
