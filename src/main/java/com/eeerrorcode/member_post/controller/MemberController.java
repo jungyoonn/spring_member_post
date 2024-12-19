@@ -1,5 +1,8 @@
 package com.eeerrorcode.member_post.controller;
 
+import java.io.UnsupportedEncodingException;
+
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,8 +69,8 @@ public class MemberController {
   @PostMapping("signin")
   public String postSignin(
     Member member, @RequestParam(required = false, value = "remember-id")String remember,
-    HttpSession session, RedirectAttributes rttr, HttpServletResponse resp
-    ) {
+    HttpSession session, RedirectAttributes rttr, HttpServletResponse resp, @RequestParam("url") @Nullable String url
+    ) throws UnsupportedEncodingException {
     log.info("아이디 기억? " + remember);
     log.info("멤버? " + member);
     log.info(member);
@@ -89,7 +92,21 @@ public class MemberController {
       resp.addCookie(cookie);
 
       // 2. redirect index
-      return "redirect:/";
+      log.info("이얍 url!!!!!! " + url);
+      // if(req.getQueryString() !=  null) {
+      //   log.info("이얍 쿼리스트링! " + req.getQueryString());
+      //   String url2 = req.getQueryString();
+        
+      //   log.info("이얍 짤린 쿼리스트링! " + url2.substring(url2.indexOf("=") + 1));
+      //   log.info("이얍 uri!!! " + req.getRequestURI());
+      //   url2 = url2.substring(url2.indexOf("=") + 1);
+      //   return "redirect:" + url2;
+      // }
+      String redirectUrl = "/";
+      if(url != null) {
+        redirectUrl = url;
+      }
+      return "redirect:" + redirectUrl;
     } else {
       // 로그인 실패
       // return "redirect:signin?msg=failed";
