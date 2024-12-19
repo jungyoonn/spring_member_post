@@ -68,8 +68,7 @@ public class Attach {
 	}
 
 	public File toFile() {
-
-		return null;
+		return new File(new File(UPLOAD_PATH, path), uuid);
 	}
 
 	public String getTodayStr() {
