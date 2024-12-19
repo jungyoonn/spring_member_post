@@ -33,3 +33,6 @@ mybatis:
 springdoc:
   swagger-ui:
     path: /swag
+
+upload:
+  path: c:/upload
