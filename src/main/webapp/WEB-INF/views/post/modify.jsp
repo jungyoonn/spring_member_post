@@ -24,7 +24,7 @@
 	                    <textarea class="form-control" id="content" placeholder="내용을 입력해 주세요" name="content" rows="15" >${post.content}</textarea>
 	
 	                    <label for="writer" class="form-label mt-3"><i class="fa-solid fa-user-pen"></i> <b>작성자:</b></label>
-	                    <input type="text" class="form-control" id="writer" name="writer" value="${post.writer}" disabled>
+	                    <input type="text" class="form-control" id="writer" name="writer" value="${post.writer}" readonly>
 	                    
 	                    <div class="text-center my-5">
 	                    	<button class="btn btn-outline-dark">수정</button>
