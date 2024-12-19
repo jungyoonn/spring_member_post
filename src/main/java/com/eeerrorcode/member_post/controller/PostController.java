@@ -47,6 +47,7 @@ public class PostController {
   @PostMapping("write")
   public String postWrite(Post post, Criteria cri) {
     post.setCno(cri.getCategory());
+    log.info(post);
     service.write(post);
     return "redirect:list?" + cri.getQs2();
   }
