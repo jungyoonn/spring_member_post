@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.eeerrorcode.member_post.aop.MyPost;
-import com.eeerrorcode.member_post.aop.SigninCheck;
+import com.eeerrorcode.member_post.aop.annotation.MyPost;
+import com.eeerrorcode.member_post.aop.annotation.SigninCheck;
 import com.eeerrorcode.member_post.dto.Criteria;
 import com.eeerrorcode.member_post.dto.PageDto;
+import com.eeerrorcode.member_post.exception.UnsignedAuthException;
 import com.eeerrorcode.member_post.service.PostService;
 import com.eeerrorcode.member_post.vo.Member;
 import com.eeerrorcode.member_post.vo.Post;
@@ -57,15 +58,14 @@ public class PostController {
     log.info(pno);
     Post post = service.findBy(pno);
     if(member == null || !post.getWriter().equals(member.getId())) {
-      throw new RuntimeException("아이디가 일치하지 않거나 로그인하지 않은 상태입니다.");
+      throw new UnsignedAuthException("아이디가 일치하지 않거나 로그인하지 않은 상태입니다.");
     }
     model.addAttribute("post", service.findBy(pno));
   }
   
-   @PostMapping("modify")
-   @SigninCheck @MyPost
-   public String postModify(Post post, Criteria cri) {
-
+  @PostMapping("modify")
+  @MyPost @SigninCheck
+  public String postModify(Post post, Criteria cri) {
     log.info(post);
     service.modify(post);
     return "redirect:list?" + cri.getQs();
