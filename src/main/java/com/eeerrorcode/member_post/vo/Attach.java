@@ -44,7 +44,7 @@ public class Attach {
 			ext = origin.substring(dotIdx);
 		}
 		uuid = UUID.randomUUID().toString();
-		String realName = uuid + ext;
+		String realName = uuid = uuid + ext;
 		path = getTodayStr();
 		File parentPath = new File(UPLOAD_PATH, path);
 		
