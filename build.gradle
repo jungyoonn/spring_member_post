@@ -9,14 +9,6 @@ configurations {
 	all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
 }
 
-// sourceSets {
-// 	main {
-// 		resources {
-// 			srcDirs = ["src/main/resources"]
-// 		}
-// 	}
-// }
-
 group = 'com.eeerrorcode'
 version = '0.0.1-SNAPSHOT'
 
@@ -81,6 +73,9 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/net.coobird/thumbnailator
 	implementation 'net.coobird:thumbnailator:0.4.20'
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-quartz
+	implementation 'org.springframework.boot:spring-boot-starter-quartz:3.4.0'
 
 }
 
