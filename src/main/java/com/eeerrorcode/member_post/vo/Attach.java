@@ -11,11 +11,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import net.coobird.thumbnailator.Thumbnailator;
 
-@Data
+@Getter
+@Setter
+@ToString
+// @EqualsAndHashCode(of = "uuid")
 @Builder
 @Alias("attach")
 @AllArgsConstructor
@@ -74,4 +79,19 @@ public class Attach {
 	public String getTodayStr() {
 		return new SimpleDateFormat("yyyy/MM/dd").format(System.currentTimeMillis());
 	}
+
+	public static Attach fromFile(File file) {
+		return Attach.builder().uuid(file.getName()).build();
+	}
+
+	@Override
+	public int hashCode() {
+		return uuid.hashCode();		
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && obj instanceof Attach && uuid.equals(((Attach)obj).uuid);
+	}
+
 }
