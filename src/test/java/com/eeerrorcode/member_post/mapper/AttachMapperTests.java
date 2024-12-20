@@ -3,7 +3,9 @@ package com.eeerrorcode.member_post.mapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,7 @@ public class AttachMapperTests {
     thumbs = dbs.stream().filter(Attach::isImage)
     .map(a -> Attach.builder().uuid("t_" + a.getUuid()).build())
     .toList();
-    
+
     log.info(thumbs);
     log.info(thumbs.size());
 
@@ -68,5 +70,22 @@ public class AttachMapperTests {
     files.removeAll(dbs);
     files.forEach(log::info);
     log.info(files.size());
+  }
+
+  @Test
+  public void testBi() {
+    Map<String, Integer> map = new HashMap<>();
+    map.put("A", 2);
+    map.put("B", 3);
+    map.put("C", 4);
+
+    map.replaceAll((k, v) -> {
+      return v * v;
+    });
+
+    map.forEach((k, v) -> {
+      log.info(k + " ::: " + v);
+    });
+    map.forEach(log::info);
   }
 }
